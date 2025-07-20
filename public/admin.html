@@ -76,7 +76,8 @@
             const SUPABASE_URL = 'https://cqozaunolhwaqpxlmlsv.supabase.co';
             const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxb3phdW9ubGh3YXFweGxtbHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5OTQ0OTYsImV4cCI6MjA2ODU3MDQ5Nn0.M5pHADWSzFNZ1XQui6GjoVoiEL96oOis4E1dTJB5bKM';
 
-            const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            // **THE FIX IS HERE:** We correctly initialize the Supabase client.
+            const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
             const loginSection = document.getElementById('login-section');
             const contentSection = document.getElementById('content-section');
@@ -105,7 +106,7 @@
                 missionFeedback.textContent = 'Saving...';
                 missionFeedback.classList.remove('text-red-600', 'text-green-600');
                 
-                const { data: { session } } = await supabase.auth.getSession();
+                const { data: { session } } = await supabaseClient.auth.getSession();
                 if (!session) {
                     missionFeedback.textContent = 'You are not logged in.';
                     missionFeedback.classList.add('text-red-600');
@@ -147,7 +148,7 @@
                 const email = loginForm.email.value;
                 const password = loginForm.password.value;
 
-                const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
                 if (error) {
                     errorMessage.textContent = error.message;
@@ -158,7 +159,7 @@
             });
 
             logoutButton.addEventListener('click', async () => {
-                await supabase.auth.signOut();
+                await supabaseClient.auth.signOut();
                 showLoginPanel();
             });
 
@@ -175,7 +176,7 @@
             }
 
             async function checkUser() {
-                const { data: { session } } = await supabase.auth.getSession();
+                const { data: { session } } = await supabaseClient.auth.getSession();
                 if (session) {
                     showContentPanel();
                 } else {
