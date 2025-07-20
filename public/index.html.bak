@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hopeful Hearts | Empowering Communities</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Public Sans', 'sans-serif'] },
+                    colors: {
+                        'brand-dark': '#131516',
+                        'brand-gray': { DEFAULT: '#6B7980', light: '#F1F3F3', medium: '#DEE1E3' },
+                        'brand-accent': { DEFAULT: '#CAE1EC', dark: '#A5C9DB' },
+                    }
+                }
+            }
+        }
+    </script>
+    <style> #mobile-menu { transition: transform 0.3s ease-in-out; } </style>
+</head>
+<body class="bg-white text-brand-dark font-sans">
+    <div id="app-container" class="min-h-screen flex flex-col">
+        <header id="main-header" class="sticky top-0 bg-white/80 backdrop-blur-sm z-50 border-b border-brand-gray-light">
+            <nav class="container mx-auto px-6 lg:px-10 py-4" aria-label="Main Navigation">
+                <div class="flex items-center justify-between">
+                    <a href="/" class="flex items-center gap-3"><svg class="h-6 w-6 text-brand-dark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path></svg><span class="text-xl font-bold tracking-tight">Hopeful Hearts</span></a>
+                    <div class="hidden lg:flex items-center gap-8">
+                        <a href="/" class="text-sm font-bold text-brand-dark">Homepage</a>
+                        <a href="/about.html" class="text-sm font-medium hover:text-brand-gray">About Us</a>
+                        <a href="#gallery" class="text-sm font-medium hover:text-brand-gray">Gallery</a>
+                        <a href="/#contact" class="text-sm font-medium hover:text-brand-gray">Contact</a>
+                    </div>
+                    <div class="hidden lg:flex"><a href="/support.html" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark">Support Us</a></div>
+                    <div class="lg:hidden"><button id="mobile-menu-button" aria-label="Open menu" class="p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg></button></div>
+                </div>
+                <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full lg:hidden z-50">
+                    <div class="flex justify-end p-4"><button id="mobile-menu-close-button" aria-label="Close menu" class="p-2"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" ><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button></div>
+                    <nav class="flex flex-col p-4 space-y-4">
+                        <a href="/" class="block text-sm font-medium py-2">Homepage</a>
+                        <a href="/about.html" class="block text-sm font-medium py-2">About Us</a>
+                        <a href="#gallery" class="block text-sm font-medium py-2">Gallery</a>
+                        <a href="/#contact" class="block text-sm font-medium py-2">Contact</a>
+                        <a href="/support.html" class="mt-4 flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold">Support Us</a>
+                    </nav>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-grow">
+            <section id="hero" class="relative bg-brand-dark">
+                <div class="absolute inset-0"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" alt="A diverse group of people working together on their phones." class="w-full h-full object-cover opacity-60"></div>
+                <div class="relative container mx-auto px-6 py-32 md:py-48 text-center text-white">
+                    <div class="max-w-3xl mx-auto">
+                        <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tighter">Empowering Communities, Transforming Lives</h1>
+                        <p class="mt-4 text-base md:text-lg font-light max-w-2xl mx-auto">Join us in our mission to create lasting change through education, healthcare, and sustainable development.</p>
+                        <div class="mt-8"><a href="/about.html" class="inline-block rounded-full h-12 px-6 bg-brand-accent text-brand-dark text-base font-bold tracking-wide hover:bg-brand-accent-dark">Learn More</a></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="mission-and-stats" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-6 lg:px-10">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <h2 class="text-3xl font-bold tracking-tight">Our Mission</h2>
+                        <p class="mt-4 text-base md:text-lg text-brand-gray leading-relaxed" data-bind="content.mission-statement">Loading mission...</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-12">
+                        <div class="bg-brand-gray-light rounded-xl p-6 text-center md:text-left">
+                            <p class="text-base font-medium text-brand-dark">Lives Impacted</p><p class="text-4xl font-bold mt-1">50,000+</p>
+                        </div>
+                        <div class="bg-brand-gray-light rounded-xl p-6 text-center md:text-left">
+                            <p class="text-base font-medium text-brand-dark">Projects Completed</p><p class="text-4xl font-bold mt-1">150+</p>
+                        </div>
+                        <div class="bg-brand-gray-light rounded-xl p-6 text-center md:text-left">
+                            <p class="text-base font-medium text-brand-dark">Volunteers</p><p class="text-4xl font-bold mt-1">10,000+</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="py-16 md:py-24 bg-brand-gray-light">
+                <div class="container mx-auto px-6 lg:px-10">
+                    <div class="text-center max-w-3xl mx-auto"><h2 class="text-3xl font-bold tracking-tight">About Us & Our Work</h2></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-12">
+                        <a href="/about.html" class="bg-white rounded-xl border border-brand-gray-medium p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow">
+                            <div class="text-brand-dark"><svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" fill="currentColor" viewBox="0 0 256 256"><path d="M117.25,157.92a60,60,0,1,0-66.5,0,95.83,95.83,0,0,0-47.22,37.71,8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"></path></svg></div>
+                            <div><h3 class="text-lg font-bold">About Us</h3><p class="text-brand-gray text-sm mt-1 leading-relaxed">Learn about our history, values, and the dedicated team driving our mission forward.</p></div>
+                        </a>
+                        <a href="#" class="bg-white rounded-xl border border-brand-gray-medium p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow">
+                             <div class="text-brand-dark"><svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" fill="currentColor" viewBox="0 0 256 256"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm120,152H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200Z"></path></svg></div>
+                            <div><h3 class="text-lg font-bold">Our Programs</h3><p class="text-brand-gray text-sm mt-1 leading-relaxed">Explore our initiatives in education, healthcare, and sustainable development, designed to empower communities.</p></div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="gallery" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-6 lg:px-10">
+                    <div class="text-center max-w-3xl mx-auto"><h2 class="text-3xl font-bold tracking-tight">Gallery</h2></div>
+                    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                        <!-- Placeholder for gallery images. Will be replaced by JS. -->
+                        <div class="aspect-square w-full rounded-xl bg-gray-200 animate-pulse"></div>
+                        <div class="aspect-square w-full rounded-xl bg-gray-200 animate-pulse"></div>
+                        <div class="aspect-square w-full rounded-xl bg-gray-200 animate-pulse"></div>
+                        <div class="aspect-square w-full rounded-xl bg-gray-200 animate-pulse"></div>
+                    </div>
+                    <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#" class="w-full sm:w-auto flex items-center justify-center rounded-full h-11 px-6 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark">View More Photos</a>
+                        <a href="#" class="w-full sm:w-auto flex items-center justify-center rounded-full h-11 px-6 bg-brand-gray-light text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-gray-medium">Watch Videos</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="donate" class="py-16 md:py-24 bg-brand-gray-light">
+                 <div class="container mx-auto px-6 lg:px-10">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <h2 class="text-4xl font-black tracking-tighter">Make a Difference Today</h2>
+                        <p class="mt-4 text-base md:text-lg text-brand-dark leading-relaxed">Your support can help us reach more communities and create lasting change.</p>
+                        <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                             <a href="https://razorpay.me/payload" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex items-center justify-center rounded-full h-12 px-6 bg-brand-accent text-brand-dark text-base font-bold tracking-wide hover:bg-brand-accent-dark">Donate Now</a>
+                            <a href="/support.html" class="w-full sm:w-auto flex items-center justify-center rounded-full h-12 px-6 bg-white text-brand-dark text-base font-bold tracking-wide hover:bg-brand-gray-medium border border-brand-gray-medium">Become a Partner</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contact-footer" class="bg-white border-t border-brand-gray-light">
+            <div class="container mx-auto px-6 lg:px-10 py-12">
+                <div class="flex flex-col items-center">
+                    <nav aria-label="Footer" class="flex flex-wrap justify-center gap-x-6 gap-y-4 text-center">
+                        <a href="/about.html" class="text-brand-gray hover:text-brand-dark">About</a><a href="#" class="text-brand-gray hover:text-brand-dark">Programs</a><a href="#gallery" class="text-brand-gray hover:text-brand-dark">Gallery</a><a href="/support.html" class="text-brand-gray hover:text-brand-dark">Contact</a><a href="#" class="text-brand-gray hover:text-brand-dark">Privacy Policy</a><a href="#" class="text-brand-gray hover:text-brand-dark">Terms of Service</a>
+                    </nav>
+                    <div class="flex justify-center gap-6 mt-8">
+                        <a href="#" aria-label="Twitter" class="text-brand-gray hover:text-brand-dark"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                        <a href="#" aria-label="Facebook" class="text-brand-gray hover:text-brand-dark"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg></a>
+                        <a href="#" aria-label="Instagram" class="text-brand-gray hover:text-brand-dark"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.116 0-3.472.011-4.695.068-2.637.12-3.896 1.383-4.018 4.018-.057 1.222-.067 1.577-.067 4.695s.01 3.472.067 4.695c.122 2.636 1.382 3.896 4.018 4.018 1.223.057 1.578.067 4.695.067s3.472-.01 4.695-.067c2.637-.122 3.896-1.382 4.018-4.018.057-1.223.067-1.578.067-4.695s-.01-3.472-.067-4.695c-.122-2.636-1.382-3.896-4.018-4.018C15.472 3.975 15.116 3.965 12 3.965z"></path></svg></a>
+                    </div>
+                    <p class="mt-8 text-sm text-brand-gray"> 2025 Hopeful Hearts. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Interactivity
+            const menuButton = document.getElementById('mobile-menu-button');
+            const closeButton = document.getElementById('mobile-menu-close-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuButton.addEventListener('click', () => { mobileMenu.classList.remove('translate-x-full'); });
+            closeButton.addEventListener('click', () => { mobileMenu.classList.add('translate-x-full'); });
+
+            // --- API Fetching Logic ---
+
+            // Helper function to handle fetch requests and errors
+            async function fetchData(url) {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
+                }
+                return response.json();
+            }
+
+            // Fetch Mission Statement
+            fetchData('/api/content?slug=mission-statement')
+                .then(data => {
+                    const missionElement = document.querySelector('[data-bind="content.mission-statement"]');
+                    if (data && data.content) {
+                        missionElement.textContent = data.content;
+                    } else {
+                        missionElement.textContent = 'Mission statement could not be loaded.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching mission:', error);
+                    const missionElement = document.querySelector('[data-bind="content.mission-statement"]');
+                    missionElement.textContent = 'Error: Could not load mission. Check API connection and Vercel logs.';
+                    missionElement.classList.add('text-red-500');
+                });
+
+            // Fetch Gallery Images
+            fetchData('/api/gallery')
+                .then(images => {
+                    const galleryGrid = document.getElementById('gallery-grid');
+                    galleryGrid.innerHTML = ''; // Clear loading placeholders
+                    if (images && images.length > 0) {
+                        images.forEach(image => {
+                            const figure = document.createElement('figure');
+                            figure.innerHTML = `<img class="aspect-square w-full rounded-xl object-cover" src="${image.image_url}" alt="${image.alt_text || 'Gallery image'}">`;
+                            galleryGrid.appendChild(figure);
+                        });
+                    } else {
+                        galleryGrid.innerHTML = `<p class="col-span-full text-center text-brand-gray">No images in the gallery yet.</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching gallery:', error);
+                    const galleryGrid = document.getElementById('gallery-grid');
+                    galleryGrid.innerHTML = `<p class="col-span-full text-center text-red-500">Error: Could not load gallery. Check API connection and Vercel logs.</p>`;
+                });
+        });
+    </script>
+</body>
+</html>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Public Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-dark': '#131516',
+                        'brand-gray': {
+                            DEFAULT: '#6B7980',
+                            light: '#F1F3F3',
+                            medium: '#DEE1E3',
+                        },
+                        'brand-accent': {
+                            DEFAULT: '#CAE1EC',
+                            dark: '#A5C9DB', // For hover states
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* A small custom style for a smoother mobile menu transition */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-brand-dark font-sans">
+
+    <!-- App Container -->
+    <div id="app-container" class="min-h-screen flex flex-col">
+
+        <!-- =================================================================== -->
+        <!-- Component: Header                                                   -->
+        <!-- =================================================================== -->
+        <header id="main-header" class="sticky top-0 bg-white/80 backdrop-blur-sm z-50 border-b border-brand-gray-light" data-component="header">
+            <nav class="container mx-auto px-6 lg:px-10 py-4" aria-label="Main Navigation">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <a href="/" class="flex items-center gap-3" aria-label="Hopeful Hearts Homepage">
+                        <svg class="h-6 w-6 text-brand-dark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+                        </svg>
+                        <span class="text-xl font-bold tracking-tight" data-bind="brand.name">Hopeful Hearts</span>
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden lg:flex items-center gap-8">
+                        <a href="/" class="text-sm font-bold text-brand-dark transition-colors">Homepage</a>
+                        <a href="/about.html" class="text-sm font-medium hover:text-brand-gray transition-colors">About Us</a>
+                        <a href="/#gallery" class="text-sm font-medium hover:text-brand-gray transition-colors">Gallery</a>
+                        <a href="/#contact" class="text-sm font-medium hover:text-brand-gray transition-colors">Contact</a>
+                    </div>
+                    <div class="hidden lg:flex">
+                         <a href="/support.html" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark transition-colors">
+                            Support Us
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="lg:hidden">
+                        <button id="mobile-menu-button" aria-label="Open menu" aria-expanded="false" class="p-2">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full lg:hidden z-50">
+                    <div class="flex justify-end p-4">
+                         <button id="mobile-menu-close-button" aria-label="Close menu" class="p-2">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav class="flex flex-col p-4 space-y-4" aria-label="Mobile Navigation">
+                        <a href="/" class="block text-sm font-bold text-brand-dark py-2">Homepage</a>
+                        <a href="/about.html" class="block text-sm font-medium py-2">About Us</a>
+                        <a href="/#gallery" class="block text-sm font-medium py-2">Gallery</a>
+                        <a href="/#contact" class="block text-sm font-medium py-2">Contact</a>
+                        <a href="support.html" class="mt-4 flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide">
+                            Support Us
+                        </a>
+                    </nav>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+
+            <!-- =================================================================== -->
+            <!-- Component: Hero Section                                             -->
+            <!-- =================================================================== -->
+            <section id="hero" data-component="hero-section" class="relative bg-brand-dark">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" 
+                         alt="A diverse group of people working together on their phones." 
+                         class="w-full h-full object-cover opacity-60">
+                </div>
+                <div class="relative container mx-auto px-6 py-32 md:py-48 text-center text-white">
+                    <div class="max-w-3xl mx-auto">
+                        <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tighter" data-bind="hero.title">
+                            Empowering Communities, Transforming Lives
+                        </h1>
+                        <p class="mt-4 text-base md:text-lg font-light max-w-2xl mx-auto" data-bind="hero.subtitle">
+                            Join us in our mission to create lasting change through education, healthcare, and sustainable development.
+                        </p>
+                        <div class="mt-8">
+                            <a href="#" class="inline-block rounded-full h-12 px-6 bg-brand-accent text-brand-dark text-base font-bold tracking-wide hover:bg-brand-accent-dark transition-colors">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- =================================================================== -->
+            <!-- Component: Mission & Stats Section                                  -->
+            <!-- =================================================================== -->
+            <section id="mission-and-stats" data-component="mission-stats-section" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-6 lg:px-10">
+                    <!-- Mission Statement -->
+                    <div class="text-center max-w-3xl mx-auto">
+                        <h2 class="text-3xl font-bold tracking-tight" data-bind="mission.title">Our Mission</h2>
+                        <p class="mt-4 text-base md:text-lg text-brand-gray leading-relaxed" data-bind="mission.description">
+                            Hopeful Hearts is dedicated to fostering self-sufficiency and improving the quality of life for underserved communities. We believe in the power of collective action to address systemic challenges and create a more equitable world.
+                        </p>
+                    </div>
+
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mt-12" data-api-endpoint="/api/v1/stats">
+                        <!-- Stat Card Component (Repeatable) -->
+                        <div class="bg-brand-gray-light rounded-xl p-6 text-center md:text-left" data-component="stat-card">
+                            <p class="text-base font-medium text-brand-dark" data-bind="stat.livesImpacted.label">Lives Impacted</p>
+                            <p class="text-4xl font-bold mt-1" data-bind="stat.livesImpacted.value">50,000+</p>
+                        </div>
+                        <!-- Stat Card Component (Repeatable) -->
+                        <div class="bg-brand-gray-light rounded-xl p-6 text-center md:text-left" data-component="stat-card">
+                            <p class="text-base font-medium text-brand-dark" data-bind="stat.projectsCompleted.label">Projects Completed</p>
+                            <p class="text-4xl font-bold mt-1" data-bind="stat.projectsCompleted.value">150+</p>
+                        </div>
+                        <!-- Stat Card Component (Repeatable) -->
+                        <div class="bg-brand-gray-light rounded-xl p-6 text-center md:text-left" data-component="stat-card">
+                            <p class="text-base font-medium text-brand-dark" data-bind="stat.volunteers.label">Volunteers</p>
+                            <p class="text-4xl font-bold mt-1" data-bind="stat.volunteers.value">10,000+</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================================================== -->
+            <!-- Component: About & Our Work Section                                 -->
+            <!-- =================================================================== -->
+            <section id="about" data-component="about-work-section" class="py-16 md:py-24 bg-brand-gray-light">
+                <div class="container mx-auto px-6 lg:px-10">
+                    <div class="text-center max-w-3xl mx-auto">
+                         <h2 class="text-3xl font-bold tracking-tight">About Us & Our Work</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-12">
+                        <!-- Info Card Component (Repeatable) -->
+                        <article class="bg-white rounded-xl border border-brand-gray-medium p-6 flex flex-col gap-4" data-component="info-card" data-page-link="/about">
+                            <div class="text-brand-dark">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" fill="currentColor" viewBox="0 0 256 256"><path d="M117.25,157.92a60,60,0,1,0-66.5,0,95.83,95.83,0,0,0-47.22,37.71a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold" data-bind="about-card.title">About Us</h3>
+                                <p class="text-brand-gray text-sm mt-1 leading-relaxed" data-bind="about-card.description">Learn about our history, values, and the dedicated team driving our mission forward.</p>
+                            </div>
+                        </article>
+                        <!-- Info Card Component (Repeatable) -->
+                        <article class="bg-white rounded-xl border border-brand-gray-medium p-6 flex flex-col gap-4" data-component="info-card" data-page-link="/programs">
+                             <div class="text-brand-dark">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" fill="currentColor" viewBox="0 0 256 256"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm120,152H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200Z"></path></svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold" data-bind="programs-card.title">Our Programs</h3>
+                                <p class="text-brand-gray text-sm mt-1 leading-relaxed" data-bind="programs-card.description">Explore our initiatives in education, healthcare, and sustainable development, designed to empower communities.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- =================================================================== -->
+            <!-- Component: Gallery Section                                          -->
+            <!-- =================================================================== -->
+            <section id="gallery" data-component="gallery-section" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-6 lg:px-10">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <h2 class="text-3xl font-bold tracking-tight">Gallery</h2>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12" data-api-endpoint="/api/v1/gallery">
+                        <!-- Gallery Item Component (Repeatable) -->
+                        <figure data-component="gallery-item" data-id="gallery-1">
+                            <img class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=2070&auto=format&fit=crop" alt="Children learning in a classroom">
+                        </figure>
+                        <!-- Gallery Item Component (Repeatable) -->
+                        <figure data-component="gallery-item" data-id="gallery-2">
+                             <img class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1583928131542-63a296996843?q=80&w=1964&auto=format&fit=crop" alt="Volunteers planting a tree">
+                        </figure>
+                        <!-- Gallery Item Component (Repeatable) -->
+                        <figure data-component="gallery-item" data-id="gallery-3">
+                            <img class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2070&auto=format&fit=crop" alt="Healthcare professionals reviewing documents">
+                        </figure>
+                        <!-- Gallery Item Component (Repeatable) -->
+                        <figure data-component="gallery-item" data-id="gallery-4">
+                            <img class="aspect-square w-full rounded-xl object-cover" src="https://images.unsplash.com/photo-1599227295842-2843d93d1797?q=80&w=2070&auto=format&fit=crop" alt="A simple, newly built wooden home">
+                        </figure>
+                    </div>
+                    <div class="mt-12 flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="#" class="w-full sm:w-auto flex items-center justify-center rounded-full h-11 px-6 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark transition-colors">
+                            View More Photos
+                        </a>
+                        <a href="#" class="w-full sm:w-auto flex items-center justify-center rounded-full h-11 px-6 bg-brand-gray-light text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-gray-medium transition-colors">
+                           Watch Videos
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================================================== -->
+            <!-- Component: Call to Action Section                                   -->
+            <!-- =================================================================== -->
+            <section id="donate" data-component="cta-section" class="py-16 md:py-24 bg-brand-gray-light">
+                 <div class="container mx-auto px-6 lg:px-10">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <h2 class="text-4xl font-black tracking-tighter" data-bind="cta.title">Make a Difference Today</h2>
+                        <p class="mt-4 text-base md:text-lg text-brand-dark leading-relaxed" data-bind="cta.subtitle">
+                            Your support can help us reach more communities and create lasting change.
+                        </p>
+                        <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                             <a href="#" class="w-full sm:w-auto flex items-center justify-center rounded-full h-12 px-6 bg-brand-accent text-brand-dark text-base font-bold tracking-wide hover:bg-brand-accent-dark transition-colors">
+                                Donate Now
+                            </a>
+                            <a href="#" class="w-full sm:w-auto flex items-center justify-center rounded-full h-12 px-6 bg-white text-brand-dark text-base font-bold tracking-wide hover:bg-brand-gray-medium transition-colors border border-brand-gray-medium">
+                                Become a Partner
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- =================================================================== -->
+        <!-- Component: Footer                                                   -->
+        <!-- =================================================================== -->
+        <footer id="contact" data-component="footer" class="bg-white border-t border-brand-gray-light">
+            <div class="container mx-auto px-6 lg:px-10 py-12">
+                <div class="flex flex-col items-center">
+                    <!-- Footer Navigation -->
+                    <nav aria-label="Footer" class="flex flex-wrap justify-center gap-x-6 gap-y-4 text-center">
+                        <a href="#about" class="text-brand-gray hover:text-brand-dark text-base font-normal">About</a>
+                        <a href="#" class="text-brand-gray hover:text-brand-dark text-base font-normal">Programs</a>
+                        <a href="#gallery" class="text-brand-gray hover:text-brand-dark text-base font-normal">Gallery</a>
+                        <a href="#" class="text-brand-gray hover:text-brand-dark text-base font-normal">Contact</a>
+                        <a href="#" class="text-brand-gray hover:text-brand-dark text-base font-normal">Privacy Policy</a>
+                        <a href="#" class="text-brand-gray hover:text-brand-dark text-base font-normal">Terms of Service</a>
+                    </nav>
+                    <!-- Social Links -->
+                    <div class="flex justify-center gap-6 mt-8">
+                        <a href="#" aria-label="Twitter" class="text-brand-gray hover:text-brand-dark">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="text-brand-gray hover:text-brand-dark">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="text-brand-gray hover:text-brand-dark">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.116 0-3.472.011-4.695.068-2.637.12-3.896 1.383-4.018 4.018-.057 1.222-.067 1.577-.067 4.695s.01 3.472.067 4.695c.122 2.636 1.382 3.896 4.018 4.018 1.223.057 1.578.067 4.695.067s3.472-.01 4.695-.067c2.637-.122 3.896-1.382 4.018-4.018.057-1.223.067-1.578.067-4.695s-.01-3.472-.067-4.695c-.122-2.636-1.382-3.896-4.018-4.018C15.472 3.975 15.116 3.965 12 3.965zM12 6.837c-2.846 0-5.163 2.317-5.163 5.163s2.317 5.163 5.163 5.163 5.163-2.317 5.163-5.163-2.317-5.163-5.163-5.163zm0 8.531c-1.863 0-3.368-1.505-3.368-3.368s1.505-3.368 3.368-3.368 3.368 1.505 3.368 3.368-1.505 3.368-3.368 3.368zm4.935-6.402c-.781 0-1.416.635-1.416 1.416s.635 1.416 1.416 1.416 1.416-.635 1.416-1.416-.635-1.416-1.416-1.416z"></path></svg>
+                        </a>
+                    </div>
+                    <!-- Copyright -->
+                    <p class="mt-8 text-sm text-brand-gray" data-bind="copyright">
+                        © 2025 Hopeful Hearts. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Minimal inline JS for mobile menu interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const closeButton = document.getElementById('mobile-menu-close-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = mobileMenu.querySelectorAll('a');
+
+            function openMenu() {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+                menuButton.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenu.classList.add('translate-x-full');
+                menuButton.setAttribute('aria-expanded', 'false');
+            }
+
+            menuButton.addEventListener('click', openMenu);
+            closeButton.addEventListener('click', closeMenu);
+            
+            // Close menu when a navigation link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            
+            // Close menu if user clicks outside of it
+            document.addEventListener('click', function(event) {
+                const isClickInside = mobileMenu.contains(event.target) || menuButton.contains(event.target);
+                if (!isClickInside && menuButton.getAttribute('aria-expanded') === 'true') {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
