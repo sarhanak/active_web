@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Our Mission | Hopeful Hearts</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Public Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-dark': '#131516',
+                        'brand-gray': {
+                            DEFAULT: '#6B7980',
+                            light: '#F1F3F3',
+                            medium: '#DEE1E3',
+                        },
+                        'brand-accent': {
+                            DEFAULT: '#CAE1EC',
+                            dark: '#A5C9DB', // For hover states
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* A small custom style for a smoother mobile menu transition */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Style for the active/selected button */
+        .btn-active {
+            background-color: #CAE1EC; /* brand-accent */
+            color: #131516; /* brand-dark */
+        }
+        .btn-inactive {
+            background-color: #F1F3F3; /* brand-gray-light */
+            color: #131516; /* brand-dark */
+        }
+    </style>
+</head>
+
+<body class="bg-white text-brand-dark font-sans">
+
+    <!-- App Container -->
+    <div id="app-container" class="min-h-screen flex flex-col">
+
+        <!-- =================================================================== -->
+        <!-- Component: Header                                                   -->
+        <!-- Note: This header is slightly different for the support page      -->
+        <!-- =================================================================== -->
+        <header id="main-header" class="sticky top-0 bg-white/80 backdrop-blur-sm z-50 border-b border-brand-gray-light" data-component="header">
+            <nav class="container mx-auto px-6 lg:px-10 py-4" aria-label="Main Navigation">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <a href="/" class="flex items-center gap-3" aria-label="Hopeful Hearts Homepage">
+                        <svg class="h-6 w-6 text-brand-dark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+                        </svg>
+                        <span class="text-xl font-bold tracking-tight" data-bind="brand.name">Hopeful Hearts</span>
+                    </a>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden lg:flex items-center gap-8">
+                        <a href="/" class="text-sm font-medium hover:text-brand-gray transition-colors">Homepage</a>
+                        <a href="/about.html" class="text-sm font-medium hover:text-brand-gray transition-colors">About Us</a>
+                        <a href="/#gallery" class="text-sm font-medium hover:text-brand-gray transition-colors">Gallery</a>
+                        <a href="/#contact" class="text-sm font-medium hover:text-brand-gray transition-colors">Contact</a>
+                    </div>
+                    <div class="hidden lg:flex items-center gap-2">
+                         <a href="https://razorpay.me/payload" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark transition-colors">
+                            Donate
+                        </a>
+                        <a href="/volunteer.html" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-gray-light text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-gray-medium transition-colors">
+                            Volunteer
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="lg:hidden">
+                        <button id="mobile-menu-button" aria-label="Open menu" aria-expanded="false" class="p-2">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full lg:hidden z-50">
+                    <div class="flex justify-end p-4">
+                         <button id="mobile-menu-close-button" aria-label="Close menu" class="p-2">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" ><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button>
+                    </div>
+                    <nav class="flex flex-col p-4 space-y-4" aria-label="Mobile Navigation">
+                        <a href="/" class="block text-sm font-medium py-2">Homepage</a>
+                        <a href="/about.html" class="block text-sm font-medium py-2">About Us</a>
+                        <a href="/#gallery" class="block text-sm font-medium py-2">Gallery</a>
+                        <a href="/#contact" class="block text-sm font-medium py-2">Contact</a>
+                        <a href="https://razorpay.me/payload" target="_blank" rel="noopener noreferrer" class="mt-4 flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold">
+                            Donate
+                        </a>
+                        <a href="./volunteer.html" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-gray-light text-brand-dark text-sm font-bold">
+                            Volunteer
+                        </a>
+                    </nav>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <div class="container mx-auto px-6 lg:px-10 py-12 md:py-20">
+                <div class="max-w-4xl mx-auto">
+                    
+                    <h1 class="text-4xl md:text-5xl font-black tracking-tighter">Support Our Mission</h1>
+
+                    <!-- =================================================================== -->
+                    <!-- Component: Make a Donation Section                                  -->
+                    <!-- =================================================================== -->
+                    <section id="make-donation" data-component="donation-section" class="mt-12">
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight" data-bind="donation.title">Make a Donation</h2>
+                        <p class="mt-3 text-base md:text-lg text-brand-gray leading-relaxed" data-bind="donation.description">
+                            Your generous donation helps us provide essential services to those in need. Choose a donation type below to make a difference today.
+                        </p>
+                        <div id="donation-type-selector" class="mt-6 flex flex-col sm:flex-row items-start gap-3" data-api-endpoint="/api/v1/donations/create">
+                            <!-- Donation Type Button (JS will handle active state) -->
+                            <button data-donation-type="one-time" class="donation-type-btn btn-active w-full sm:w-auto flex items-center justify-center rounded-full h-11 px-6 text-sm font-bold tracking-wide transition-colors">
+                                One-Time Donation
+                            </button>
+                            <!-- Donation Type Button -->
+                            <button data-donation-type="recurring" class="donation-type-btn btn-inactive w-full sm:w-auto flex items-center justify-center rounded-full h-11 px-6 text-sm font-bold tracking-wide transition-colors hover:bg-brand-gray-medium">
+                                Recurring Donation
+                            </button>
+                        </div>
+                        <!-- This container will be shown when a donation type is selected -->
+                        <div id="donation-form-container" class="mt-6" data-payment-gateway-url="https://api.razorpay.com/v1/checkout/embedded">
+                            <!-- A real form would go here. For now, we link directly. -->
+                             <a href="https://razorpay.me/payload" target="_blank" rel="noopener noreferrer" class="inline-block mt-2 rounded-full h-12 px-8 bg-brand-accent text-brand-dark text-base font-bold tracking-wide hover:bg-brand-accent-dark transition-colors">
+                                Proceed to Donate
+                            </a>
+                        </div>
+                    </section>
+                    
+                    <!-- Divider -->
+                    <hr class="my-12 md:my-16 border-brand-gray-light">
+
+                    <!-- =================================================================== -->
+                    <!-- Component: Partner with Us Section                                  -->
+                    <!-- =================================================================== -->
+                    <section id="partner-with-us" data-component="partner-section">
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight" data-bind="partner.title">Partner with Us</h2>
+                        <p class="mt-3 text-base md:text-lg text-brand-gray leading-relaxed" data-bind="partner.description">
+                            Collaborate with us to amplify your impact. We offer various partnership opportunities tailored to your organization's goals. Contact us to explore how we can work together.
+                        </p>
+                        <div class="mt-6">
+                            <a href="./partner.html" class="inline-block rounded-full h-11 px-6 bg-brand-gray-light text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-gray-medium transition-colors">
+                                Contact Us
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- Divider -->
+                    <hr class="my-12 md:my-16 border-brand-gray-light">
+
+                    <!-- =================================================================== -->
+                    <!-- Component: Volunteer Opportunities Section                          -->
+                    <!-- =================================================================== -->
+                    <section id="volunteer" data-component="volunteer-section">
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight" data-bind="volunteer.title">Volunteer Opportunities</h2>
+                        <p class="mt-3 text-base md:text-lg text-brand-gray leading-relaxed" data-bind="volunteer.description">
+                            Join our team of dedicated volunteers and contribute your time and skills to support our programs. Explore available roles and apply to make a meaningful impact.
+                        </p>
+                        <div class="mt-6">
+                            <a href="./volunteer.html" class="inline-block rounded-full h-11 px-6 bg-brand-gray-light text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-gray-medium transition-colors">
+                                Explore Roles
+                            </a>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- =================================================================== -->
+        <!-- Component: Footer (Re-used from index.html)                         -->
+        <!-- =================================================================== -->
+        <footer id="contact" data-component="footer" class="bg-white border-t border-brand-gray-light mt-auto">
+            <div class="container mx-auto px-6 lg:px-10 py-12">
+                <div class="flex flex-col items-center">
+                    <!-- Footer Navigation -->
+                    <nav aria-label="Footer" class="flex flex-wrap justify-center gap-x-6 gap-y-4 text-center">
+                        <a href="./index.html#about" class="text-brand-gray hover:text-brand-dark text-base font-normal">About</a>
+                        <a href="#" class="text-brand-gray hover:text-brand-dark text-base font-normal">Programs</a>
+                        <a href="./index.html#gallery" class="text-brand-gray hover:text-brand-dark text-base font-normal">Gallery</a>
+                        <a href="./partner.html" class="text-brand-gray hover:text-brand-dark text-base font-normal">Contact</a>
+                        <a href="#" class="text-brand-gray hover:text-brand-dark text-base font-normal">Privacy Policy</a>
+                        <a href="#" class="text-brand-gray hover:text-brand-dark text-base font-normal">Terms of Service</a>
+                    </nav>
+                    <!-- Social Links -->
+                    <div class="flex justify-center gap-6 mt-8">
+                        <a href="#" aria-label="Twitter" class="text-brand-gray hover:text-brand-dark"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                        <a href="#" aria-label="Facebook" class="text-brand-gray hover:text-brand-dark"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg></a>
+                        <a href="#" aria-label="Instagram" class="text-brand-gray hover:text-brand-dark"><svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.802c-3.116 0-3.472.011-4.695.068-2.637.12-3.896 1.383-4.018 4.018-.057 1.222-.067 1.577-.067 4.695s.01 3.472.067 4.695c.122 2.636 1.382 3.896 4.018 4.018 1.223.057 1.578.067 4.695.067s3.472-.01 4.695-.067c2.637-.122 3.896-1.382 4.018-4.018.057-1.223.067-1.578.067-4.695s-.01-3.472-.067-4.695c-.122-2.636-1.382-3.896-4.018-4.018C15.472 3.975 15.116 3.965 12 3.965zM12 6.837c-2.846 0-5.163 2.317-5.163 5.163s2.317 5.163 5.163 5.163 5.163-2.317 5.163-5.163-2.317-5.163-5.163-5.163zm0 8.531c-1.863 0-3.368-1.505-3.368-3.368s1.505-3.368 3.368-3.368 3.368 1.505 3.368 3.368-1.505 3.368-3.368 3.368zm4.935-6.402c-.781 0-1.416.635-1.416 1.416s.635 1.416 1.416 1.416 1.416-.635 1.416-1.416-.635-1.416-1.416-1.416z"></path></svg></a>
+                    </div>
+                    <p class="mt-8 text-sm text-brand-gray" data-bind="copyright">© 2025 Hopeful Hearts. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Minimal inline JS for interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Logic
+            const menuButton = document.getElementById('mobile-menu-button');
+            const closeButton = document.getElementById('mobile-menu-close-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            function openMenu() {
+                mobileMenu.classList.remove('translate-x-full');
+                mobileMenu.classList.add('translate-x-0');
+                menuButton.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('translate-x-0');
+                mobileMenu.classList.add('translate-x-full');
+                menuButton.setAttribute('aria-expanded', 'false');
+            }
+
+            menuButton.addEventListener('click', openMenu);
+            closeButton.addEventListener('click', closeMenu);
+
+            // Donation Type Selector Logic
+            const donationSelector = document.getElementById('donation-type-selector');
+            const buttons = donationSelector.querySelectorAll('.donation-type-btn');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    buttons.forEach(btn => {
+                        btn.classList.remove('btn-active');
+                        btn.classList.add('btn-inactive');
+                    });
+                    // Add active class to the clicked button
+                    this.classList.remove('btn-inactive');
+                    this.classList.add('btn-active');
+                    
+                    // Here you would typically show a specific form based on the
+                    // `data-donation-type` attribute. For now, it just changes the style.
+                });
+            });
+        });
+    </script>
+</body>
+</html>

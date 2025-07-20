@@ -1,0 +1,22 @@
+{
+  "name": "hopeful-hearts",
+  "version": "1.0.0",
+  "description": "Hopeful Hearts - Empowering Communities",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel dev",
+    "deploy": "vercel --prod",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "nonprofit",
+    "charity",
+    "community"
+  ],
+  "author": "Hopeful Hearts Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@vercel/node": "^3.0.0"
+  }
+}
