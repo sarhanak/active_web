@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Hopeful Hearts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Public Sans', 'sans-serif'] },
+                    colors: {
+                        'brand-dark': '#131516',
+                        'brand-gray': { DEFAULT: '#6B7980', light: '#F1F3F3', medium: '#DEE1E3' },
+                        'brand-accent': { DEFAULT: '#CAE1EC', dark: '#A5C9DB' },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-gray-light font-sans">
+
+    <div id="admin-container" class="min-h-screen flex flex-col items-center justify-center p-4">
+
+        <!-- =================================================================== -->
+        <!-- Login Form Section (Visible when logged out)                        -->
+        <!-- =================================================================== -->
+        <div id="login-section" class="w-full max-w-md">
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                <h1 class="text-2xl font-bold text-center text-brand-dark mb-6">Admin Panel Login</h1>
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-brand-gray">Email</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 bg-white border border-brand-gray-medium rounded-md shadow-sm placeholder-brand-gray focus:outline-none focus:ring-brand-dark focus:border-brand-dark">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-brand-gray">Password</label>
+                        <input type="password" id="password" name="password" required class="mt-1 block w-full px-3 py-2 bg-white border border-brand-gray-medium rounded-md shadow-sm placeholder-brand-gray focus:outline-none focus:ring-brand-dark focus:border-brand-dark">
+                    </div>
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-brand-dark bg-brand-accent hover:bg-brand-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-dark">
+                        Sign In
+                    </button>
+                </form>
+                <p id="error-message" class="mt-4 text-center text-sm text-red-600"></p>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- Content Management Section (Visible when logged in)                 -->
+        <!-- =================================================================== -->
+        <div id="content-section" class="w-full max-w-4xl hidden">
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                <div class="flex justify-between items-center mb-6">
+                    <h1 class="text-2xl font-bold text-brand-dark">Content Management</h1>
+                    <button id="logout-button" class="text-sm font-medium text-brand-gray hover:text-brand-dark">Logout</button>
+                </div>
+
+                <!-- Mission Statement Editor -->
+                <div class="space-y-4 border-t border-brand-gray-light pt-6">
+                    <h2 class="text-lg font-bold">Mission Statement</h2>
+                    <p class="text-sm text-brand-gray">Edit the mission statement text that appears on the homepage.</p>
+                    <textarea id="mission-editor" rows="4" class="block w-full px-3 py-2 bg-white border border-brand-gray-medium rounded-md shadow-sm focus:outline-none focus:ring-brand-dark focus:border-brand-dark"></textarea>
+                    <button id="save-mission-button" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark">
+                        Save Mission Statement
+                    </button>
+                    <p id="mission-feedback" class="text-sm"></p>
+                </div>
+                
+                <!-- We will add the Gallery Management section here in the next step -->
+
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Your Supabase credentials from Vercel Environment Variables
+            // IMPORTANT: These are placeholders. They will NOT work.
+            // The actual values must be loaded securely. For now, we will hardcode them
+            // for testing, but we will remove this before the final version.
+            const SUPABASE_URL = 'https://cqozaunolhwaqpxlmlsv.supabase.co';
+            const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxb3phdW9ubGh3YXFweGxtbHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5OTQ0OTYsImV4cCI6MjA2ODU3MDQ5Nn0.M5pHADWSzFNZ1XQui6GjoVoiEL96oOis4E1dTJB5bKM';
+
+            const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+            const loginSection = document.getElementById('login-section');
+            const contentSection = document.getElementById('content-section');
+            const loginForm = document.getElementById('login-form');
+            const errorMessage = document.getElementById('error-message');
+            const logoutButton = document.getElementById('logout-button');
+            
+            // We will add the logic for saving content here later.
+
+            // --- Authentication Logic ---
+
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                errorMessage.textContent = '';
+                const email = loginForm.email.value;
+                const password = loginForm.password.value;
+
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password,
+                });
+
+                if (error) {
+                    errorMessage.textContent = error.message;
+                    return;
+                }
+
+                // If login is successful, hide login form and show content editor
+                loginSection.classList.add('hidden');
+                contentSection.classList.remove('hidden');
+            });
+
+            logoutButton.addEventListener('click', async () => {
+                await supabase.auth.signOut();
+                // Hide content editor and show login form
+                contentSection.classList.add('hidden');
+                loginSection.classList.remove('hidden');
+            });
+
+            // Check if a user is already logged in when the page loads
+            async function checkUser() {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) {
+                    loginSection.classList.add('hidden');
+                    contentSection.classList.remove('hidden');
+                }
+            }
+            
+            checkUser();
+        });
+    </script>
+</body>
+</html>
