@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Supabase Client Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
@@ -31,9 +30,6 @@
 
     <div id="admin-container" class="min-h-screen flex flex-col items-center justify-center p-4">
 
-        <!-- =================================================================== -->
-        <!-- Login Form Section (Visible when logged out)                        -->
-        <!-- =================================================================== -->
         <div id="login-section" class="w-full max-w-md">
             <div class="bg-white p-8 rounded-xl shadow-md">
                 <h1 class="text-2xl font-bold text-center text-brand-dark mb-6">Admin Panel Login</h1>
@@ -54,9 +50,6 @@
             </div>
         </div>
 
-        <!-- =================================================================== -->
-        <!-- Content Management Section (Visible when logged in)                 -->
-        <!-- =================================================================== -->
         <div id="content-section" class="w-full max-w-4xl hidden">
             <div class="bg-white p-8 rounded-xl shadow-md">
                 <div class="flex justify-between items-center mb-6">
@@ -64,19 +57,15 @@
                     <button id="logout-button" class="text-sm font-medium text-brand-gray hover:text-brand-dark">Logout</button>
                 </div>
 
-                <!-- Mission Statement Editor -->
                 <div class="space-y-4 border-t border-brand-gray-light pt-6">
                     <h2 class="text-lg font-bold">Mission Statement</h2>
                     <p class="text-sm text-brand-gray">Edit the mission statement text that appears on the homepage.</p>
-                    <textarea id="mission-editor" rows="4" class="block w-full px-3 py-2 bg-white border border-brand-gray-medium rounded-md shadow-sm focus:outline-none focus:ring-brand-dark focus:border-brand-dark"></textarea>
-                    <button id="save-mission-button" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark">
+                    <textarea id="mission-editor" rows="4" class="block w-full px-3 py-2 bg-white border border-brand-gray-medium rounded-md shadow-sm focus:outline-none focus:ring-brand-dark focus:border-brand-dark" placeholder="Loading content..."></textarea>
+                    <button id="save-mission-button" class="flex items-center justify-center rounded-full h-10 px-5 bg-brand-accent text-brand-dark text-sm font-bold tracking-wide hover:bg-brand-accent-dark disabled:opacity-50" disabled>
                         Save Mission Statement
                     </button>
                     <p id="mission-feedback" class="text-sm"></p>
                 </div>
-                
-                <!-- We will add the Gallery Management section here in the next step -->
-
             </div>
         </div>
 
@@ -84,10 +73,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Your Supabase credentials from Vercel Environment Variables
-            // IMPORTANT: These are placeholders. They will NOT work.
-            // The actual values must be loaded securely. For now, we will hardcode them
-            // for testing, but we will remove this before the final version.
             const SUPABASE_URL = 'https://cqozaunolhwaqpxlmlsv.supabase.co';
             const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNxb3phdW9ubGh3YXFweGxtbHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI5OTQ0OTYsImV4cCI6MjA2ODU3MDQ5Nn0.M5pHADWSzFNZ1XQui6GjoVoiEL96oOis4E1dTJB5bKM';
 
@@ -98,45 +83,103 @@
             const loginForm = document.getElementById('login-form');
             const errorMessage = document.getElementById('error-message');
             const logoutButton = document.getElementById('logout-button');
-            
-            // We will add the logic for saving content here later.
+            const missionEditor = document.getElementById('mission-editor');
+            const saveMissionButton = document.getElementById('save-mission-button');
+            const missionFeedback = document.getElementById('mission-feedback');
+
+            // --- Content Loading and Saving ---
+            async function loadContent() {
+                try {
+                    const response = await fetch('/api/content?slug=mission-statement');
+                    const data = await response.json();
+                    if (data.content) {
+                        missionEditor.value = data.content;
+                    }
+                } catch (error) {
+                    missionEditor.value = "Could not load content.";
+                    console.error("Failed to load content:", error);
+                }
+            }
+
+            saveMissionButton.addEventListener('click', async () => {
+                missionFeedback.textContent = 'Saving...';
+                missionFeedback.classList.remove('text-red-600', 'text-green-600');
+                
+                const { data: { session } } = await supabase.auth.getSession();
+                if (!session) {
+                    missionFeedback.textContent = 'You are not logged in.';
+                    missionFeedback.classList.add('text-red-600');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/api/update-content', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${session.access_token}`,
+                        },
+                        body: JSON.stringify({
+                            slug: 'mission-statement',
+                            newContent: missionEditor.value,
+                        }),
+                    });
+
+                    const result = await response.json();
+                    if (!response.ok) {
+                        throw new Error(result.error || 'Failed to save.');
+                    }
+
+                    missionFeedback.textContent = 'Successfully saved!';
+                    missionFeedback.classList.add('text-green-600');
+
+                } catch (error) {
+                    missionFeedback.textContent = `Error: ${error.message}`;
+                    missionFeedback.classList.add('text-red-600');
+                }
+            });
+
 
             // --- Authentication Logic ---
-
             loginForm.addEventListener('submit', async (event) => {
                 event.preventDefault();
                 errorMessage.textContent = '';
                 const email = loginForm.email.value;
                 const password = loginForm.password.value;
 
-                const { data, error } = await supabase.auth.signInWithPassword({
-                    email: email,
-                    password: password,
-                });
+                const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
                 if (error) {
                     errorMessage.textContent = error.message;
                     return;
                 }
-
-                // If login is successful, hide login form and show content editor
-                loginSection.classList.add('hidden');
-                contentSection.classList.remove('hidden');
+                
+                showContentPanel();
             });
 
             logoutButton.addEventListener('click', async () => {
                 await supabase.auth.signOut();
-                // Hide content editor and show login form
-                contentSection.classList.add('hidden');
-                loginSection.classList.remove('hidden');
+                showLoginPanel();
             });
 
-            // Check if a user is already logged in when the page loads
+            function showLoginPanel() {
+                contentSection.classList.add('hidden');
+                loginSection.classList.remove('hidden');
+            }
+
+            function showContentPanel() {
+                loginSection.classList.add('hidden');
+                contentSection.classList.remove('hidden');
+                saveMissionButton.disabled = false;
+                loadContent();
+            }
+
             async function checkUser() {
                 const { data: { session } } = await supabase.auth.getSession();
                 if (session) {
-                    loginSection.classList.add('hidden');
-                    contentSection.classList.remove('hidden');
+                    showContentPanel();
+                } else {
+                    showLoginPanel();
                 }
             }
             
