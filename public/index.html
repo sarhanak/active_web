@@ -157,18 +157,6 @@
 
             // --- API Fetching Logic ---
 
-            // **NEW DEBUGGING STEP**
-            // Let's try to fetch something that we know doesn't exist.
-            // This MUST produce a 404 error in the Vercel logs if the connection is working.
-            fetch('/api/this-is-a-test-that-should-fail')
-                .then(response => {
-                    console.log('Debugging fetch completed with status:', response.status);
-                })
-                .catch(error => {
-                    console.error('Debugging fetch failed:', error);
-                });
-
-
             // Helper function to handle fetch requests and errors
             async function fetchData(url) {
                 const response = await fetch(url);
